@@ -131,6 +131,13 @@ public class BusinessOperationService {
         return new OperationResultResponse("Visitor deactivated and future tickets cancelled", cancelledTickets);
     }
 
+    @Transactional
+    public OperationResultResponse activateVisitor(Long visitorId) {
+        Visitor visitor = ticketService.findVisitor(visitorId);
+        visitor.setActive(true);
+        return new OperationResultResponse("Visitor activated", 0);
+    }
+
     @Transactional(readOnly = true)
     public List<VisitorItineraryItemResponse> getVisitorItinerary(Long visitorId, LocalDateTime from, LocalDateTime to) {
         if (!from.isBefore(to)) {

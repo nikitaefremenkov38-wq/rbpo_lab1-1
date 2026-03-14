@@ -55,6 +55,11 @@ public class BusinessOperationController {
         return businessOperationService.deactivateVisitor(visitorId);
     }
 
+    @PostMapping("/visitors/{visitorId}/activate")
+    public OperationResultResponse activateVisitor(@PathVariable Long visitorId) {
+        return businessOperationService.activateVisitor(visitorId);
+    }
+
     @GetMapping("/visitors/{visitorId}/itinerary")
     public List<VisitorItineraryItemResponse> getItinerary(
             @PathVariable Long visitorId,
